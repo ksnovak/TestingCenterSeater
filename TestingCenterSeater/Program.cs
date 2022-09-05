@@ -1,7 +1,8 @@
 ﻿/* This tool is used to find the best seat for a student to take a test in. 
  * It will find the place furthest away from all other students, wherever possible.
  * 
- * 
+ * If there are multiple options equi-distant from other students, we place the new student further down the row.
+ * If there is a case where a student can be at the very beginning/end of the row, we prioritize that (as long as it doesn't put them any closer to another student).
  * 
  */
 
@@ -122,7 +123,7 @@ int findOptimalSpot(bool[] Seats)
 }
 
 /* A list of different test cases and the logic behind what we expect the result to be.
- * case 0 is the one straight out of the 
+ * case 0 is the one straight out of the prompt, and the rest are different cases I had thought to make sure were functional.
  * 
  */
 bool[][] TestCases = new bool[][]
@@ -149,9 +150,9 @@ bool[][] TestCases = new bool[][]
     new bool[] {true, false, true, false, true, false, true} //A bunch of staggered students, with end NOT available - place them in any open spot
 };
 
-int desiredCase = 0;
+int desiredTestCase = 0;
 
-int OptimalStudentSpot = findOptimalSpot(TestCases[desiredCase]);
+int OptimalStudentSpot = findOptimalSpot(TestCases[desiredTestCase]);
 
 Console.WriteLine("Welcome to the Testing Center Seater!!");
-Console.WriteLine(displaySeats(TestCases[desiredCase], OptimalStudentSpot));
+Console.WriteLine(displaySeats(TestCases[desiredTestCase], OptimalStudentSpot));
